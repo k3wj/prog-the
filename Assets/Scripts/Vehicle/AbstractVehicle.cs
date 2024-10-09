@@ -103,12 +103,12 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         UpdateCameraPos();
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         _camMode = CameraMode.Side;
         XBound = 4.0f;
         MaxSpeed = 100.0f;
-        HorsePower = 5000.0f;
+        HorsePower = 3000.0f;
         JumpForce = 5000.0f;
         TurnSpeed = 0.02f;
         VehicleName = "New Vehicle";
@@ -118,13 +118,13 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         UpdateCameraOffset();
     }
 
-    public void Drive()
+    public virtual void Drive()
     {
         VInput = Input.GetAxis("Vertical");
         Rb.AddForce(Vector3.forward * HorsePower * VInput, ForceMode.Force);
     }
 
-    public void Jump()
+    public virtual void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -132,7 +132,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         }
     }
 
-    public void Turn()
+    public virtual void Turn()
     {
         HInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * TurnSpeed * HInput, Space.World);
