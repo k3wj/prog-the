@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class SportVehicle : AbstractVehicle
+public class SportVehicle : AbstractVehicle // INHERITANCE
 {
-    public override void Initialize()
+    public override void Initialize() // POLYMORPHISM
     {
         base.Initialize();
 
