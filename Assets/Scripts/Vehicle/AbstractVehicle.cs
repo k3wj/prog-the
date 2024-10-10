@@ -5,7 +5,8 @@ using System;
 using static IVehicle;
 using UnityEditor.IMGUI.Controls;
 
-public abstract class AbstractVehicle : MonoBehaviour, IVehicle
+// ABSTRACTION
+public abstract class AbstractVehicle : MonoBehaviour, IVehicle // INHERITANCE
 {
     private Vector3[,] _camModes =
     {
@@ -23,7 +24,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private float _xBound;
-    public float XBound
+    public float XBound // ENCAPSULATION
     {
         get { return _xBound; }
         set { _xBound = value; }
@@ -31,7 +32,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private float _maxSpeed;
-    public float MaxSpeed
+    public float MaxSpeed // ENCAPSULATION
     {
         get { return _maxSpeed; }
         set { _maxSpeed = value; }
@@ -39,7 +40,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private float _horsePower;
-    public float HorsePower
+    public float HorsePower // ENCAPSULATION
     {
         get { return _horsePower; }
         set { _horsePower = value; }
@@ -47,7 +48,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private float _jumpForce;
-    public float JumpForce
+    public float JumpForce // ENCAPSULATION
     {
         get { return _jumpForce; }
         set { _jumpForce = value; }
@@ -55,7 +56,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private float _turnSpeed;
-    public float TurnSpeed
+    public float TurnSpeed // ENCAPSULATION
     {
         get { return _turnSpeed; }
         set { _turnSpeed = value; }
@@ -63,7 +64,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private string _vehicleName;
-    public string VehicleName
+    public string VehicleName // ENCAPSULATION
     {
         get { return _vehicleName; }
         set { _vehicleName = value; }
@@ -71,31 +72,31 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     [SerializeField]
     private VehicleType _type;
-    public VehicleType Type
+    public VehicleType Type // ENCAPSULATION
     {
         get { return _type; }
         set { _type = value; }
     }
-    public Color BodyColor { get; set; }
+    public Color BodyColor { get; set; } // ENCAPSULATION
 
-    public Vector3 CameraOffset { get; set; }
-    public Rigidbody Rb { get; set; }
+    public Vector3 CameraOffset { get; set; } // ENCAPSULATION
+    public Rigidbody Rb { get; set; } // ENCAPSULATION
 
-    public float VInput { get; set; }
-    public float HInput { get; set; }
+    public float VInput { get; set; } // ENCAPSULATION
+    public float HInput { get; set; } // ENCAPSULATION
 
     private void Awake()
     {
-        Initialize();
+        Initialize(); // ABSTRACTION
     }
 
     // Update is called once per frame
     void Update()
     {
-        Drive();
-        Jump();
-        Turn();
-        SwitchCameraMode();
+        Drive(); // ABSTRACTION
+        Jump(); // ABSTRACTION
+        Turn(); // ABSTRACTION
+        SwitchCameraMode(); // ABSTRACTION
     }
 
     private void LateUpdate()
@@ -182,7 +183,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         Camera.main.transform.rotation = Quaternion.Euler(_camModes[(int)_camMode, 1]);
     }
 
-    private void UpdateCameraOffset(CameraMode camMode)
+    private void UpdateCameraOffset(CameraMode camMode) // POLYMORPHISM
     {
         _camMode = camMode;
         UpdateCameraOffset();
