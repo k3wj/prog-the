@@ -105,7 +105,6 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
 
     public virtual void Initialize()
     {
-        _camMode = CameraMode.Side;
         XBound = 4.0f;
         MaxSpeed = 100.0f;
         HorsePower = 3000.0f;
@@ -115,7 +114,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         Type = VehicleType.Standard;
         BodyColor = Color.white;
         Rb = GetComponent<Rigidbody>();
-        UpdateCameraOffset();
+        UpdateCameraOffset(CameraMode.Side);
     }
 
     public virtual void Drive()
@@ -161,7 +160,7 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
     public void SwitchCameraMode()
     {
         if (Input.GetKeyDown(KeyCode.C))
-        {  
+        {
             switch (_camMode)
             {
                 case CameraMode.Side:
@@ -181,5 +180,11 @@ public abstract class AbstractVehicle : MonoBehaviour, IVehicle
         CameraOffset = _camModes[(int)_camMode, 0];
         Camera.main.transform.position = _camModes[(int)_camMode, 0];
         Camera.main.transform.rotation = Quaternion.Euler(_camModes[(int)_camMode, 1]);
+    }
+
+    private void UpdateCameraOffset(CameraMode camMode)
+    {
+        _camMode = camMode;
+        UpdateCameraOffset();
     }
 }
